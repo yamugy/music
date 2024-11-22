@@ -1,5 +1,5 @@
+import { Lesson } from '@/types/models';
 import { useState, useEffect } from 'react';
-import { Lesson } from '@/types/lesson';
 
 interface LessonListProps {
   refreshTrigger: number;
@@ -29,7 +29,7 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit }) => {
     fetchLessons();
   }, [refreshTrigger]);
 
-  const handleDelete = async (lessonId: string) => {
+  const handleDelete = async (lessonId: number) => {
     if (!confirm('정말 이 수업을 삭제하시겠습니까?')) return;
 
     try {

@@ -1,17 +1,10 @@
+import { Student } from '@/types/models';
+import { BaseListProps } from '@/types/utils';
+import { fetchData, deleteData } from '@/utils/api';
 import { useEffect, useState } from 'react';
 
-interface Student {
-  id: number;
-  name: string;
-  phone: string;    // contact -> phone
-  subject: string;  // 추가
-  note: string;     // memo -> note
-}
-
-interface StudentListProps {
-  onEdit: (student: any) => void;
-  refreshTrigger: number;
-  className?: string;
+interface StudentListProps extends BaseListProps {
+  onEdit: (student: Student) => void;
 }
 
 export default function StudentList({ onEdit, refreshTrigger, className }: StudentListProps) {
@@ -22,12 +15,10 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const res = await fetch('/api/students');
-      const data = await res.json();
+      const data = await fetchData<Student[]>('/api/students');
       setStudents(data);
       setFilteredStudents(data);
     };
-
     fetchStudents();
   }, [refreshTrigger]);
 
@@ -41,18 +32,9 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
   };
 
   const handleDelete = async (studentId: number) => {
-    if (!confirm('정말 삭제하시겠습니까? 관련된 모든 수업과 결제 정보도 함께 삭제됩니다.')) {
-      return;
-    }
-
+    if (!confirm('정말 삭제하시겠습니까?')) return;
     try {
-      const res = await fetch(`/api/students/${studentId}`, {
-        method: 'DELETE',
-      });
-
-      if (!res.ok) throw new Error('삭제 실패');
-      
-      // 목록 새로고침
+      await deleteData(`/api/students/${studentId}`);
       const updatedStudents = students.filter(student => student.id !== studentId);
       setStudents(updatedStudents);
       setFilteredStudents(updatedStudents);

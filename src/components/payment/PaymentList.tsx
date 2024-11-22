@@ -1,26 +1,12 @@
+import { Payment } from '@/types/models';
+import { BaseListProps, SortConfig, SortDirection } from '@/types/utils';
 import { useState, useEffect, useMemo } from 'react';
+import { fetchData, deleteData } from '@/utils/api';
+import { formatDate, formatCurrency } from '@/utils/formatters';
 
-interface Payment {
-  id: number;
-  studentId: number;
-  amount: number;
-  method: string;
-  date: string;
-  memo?: string;
-  student: {
-    name: string;
-  };
-}
+type PaymentSortKeys = keyof Omit<Payment, 'student' | 'createdAt' | 'updatedAt'>;
 
-// SortConfig 타입을 Payment의 키로 제한 (student 제외)
-type PaymentSortKeys = keyof Omit<Payment, 'student'>;
-interface SortConfig {
-  key: PaymentSortKeys;
-  direction: 'asc' | 'desc';
-}
-
-interface PaymentListProps {
-  refreshTrigger: number;
+interface PaymentListProps extends BaseListProps {
   onEdit: (payment: Payment) => void;
   onPaymentsLoad: (payments: Payment[]) => void;
 }
@@ -37,18 +23,15 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await fetch('/api/payments');
-        if (!response.ok) throw new Error('결제 내역을 불러오는데 실패했습니다.');
-        const data = await response.json();
+        const data = await fetchData<Payment[]>('/api/payments');
         setPayments(data);
-        onPaymentsLoad(data); // 부모 컴포넌트로 데이터 전달
+        onPaymentsLoad(data);
       } catch (error) {
         console.error('Error:', error);
       } finally {
         setIsLoading(false);
       }
     };
-
     fetchPayments();
   }, [refreshTrigger, onPaymentsLoad]);
 
