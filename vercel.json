@@ -7,7 +7,9 @@
     }
   ],
   "env": {
-    "POSTGRES_PRISMA_URL": "@postgres_prisma_url",
-    "POSTGRES_URL_NON_POOLING": "@postgres_url_non_pooling"
-  }
+    "POSTGRES_PRISMA_URL": "postgres://neondb_owner:Wq05zrCIKvYA@ep-white-flower-a1p0t41s-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&pgbouncer=true&connect_timeout=15"
+  },
+  "buildCommand": "prisma generate && next build",
+  "framework": "nextjs",
+  "installCommand": "npm install"
 }
