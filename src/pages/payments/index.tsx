@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { Payment } from '@/types/models';
 import PaymentList from '@/components/payment/PaymentList';
 import PaymentModal from '@/components/payment/PaymentModal';
 import PaymentStats from '@/components/payment/PaymentStats';

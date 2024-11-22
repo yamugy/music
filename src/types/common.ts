@@ -7,7 +7,7 @@ export interface BaseEntity {
 export type SortDirection = 'asc' | 'desc';
 export type SortType = 'date' | 'student' | 'time';
 
-export interface ListProps {
+export interface BaseListProps {
   refreshTrigger: number;
   className?: string;
 }

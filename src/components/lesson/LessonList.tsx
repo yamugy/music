@@ -1,12 +1,13 @@
 import { Lesson } from '@/types/models';
+import { BaseListProps } from '@/types/common';
 import { useState, useEffect } from 'react';
 
-interface LessonListProps {
-  refreshTrigger: number;
+// LessonListProps를 BaseListProps에서 확장
+interface LessonListProps extends BaseListProps {
   onEdit: (lesson: Lesson) => void;
 }
 
-const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit }) => {
+const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, className }) => {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState<'date' | 'student' | 'time'>('student'); // 정렬 옵션 추가
@@ -118,7 +119,7 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit }) => {
   const groupedLessons = sortBy === 'student' ? groupByStudent(sortedLessons) : null;
 
   return (
-    <div className="space-y-4">
+    <div className={`space-y-4 ${className}`}>
       <div className="flex justify-end gap-2 mb-4">
         <select
           value={sortBy}

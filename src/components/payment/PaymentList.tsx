@@ -1,5 +1,5 @@
 import { Payment } from '@/types/models';
-import { BaseListProps, SortConfig, SortDirection } from '@/types/utils';
+import { BaseListProps, SortConfig, SortDirection } from '@/types/common';
 import { useState, useEffect, useMemo } from 'react';
 import { fetchData, deleteData } from '@/utils/api';
 import { formatDate, formatCurrency } from '@/utils/formatters';
@@ -14,7 +14,10 @@ interface PaymentListProps extends BaseListProps {
 export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: PaymentListProps) {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'date', direction: 'desc' });
+  const [sortConfig, setSortConfig] = useState<SortConfig<Payment>>({ 
+    key: 'date', 
+    direction: 'desc' 
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [selectedStudent, setSelectedStudent] = useState<number | 'all'>('all');

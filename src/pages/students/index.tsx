@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
-import StudentList from '@/components/student/StudentList';
+import StudentList from '@/components/student/StudentList'; // 경로 수정
 import StudentModal from '@/components/student/StudentModal';
+import { Student } from '@/types/models';
 
 export default function StudentsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);

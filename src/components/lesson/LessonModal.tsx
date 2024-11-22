@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from '@/components/common/Modal';
-import { Lesson, LessonFormData } from '@/types/lesson';
+import { Lesson, LessonFormData } from '@/types/models';
 
 const SUBJECTS = [
   '섹소폰', '클라리넷', '기타', '베이스', '드럼', '���래', '직접입력'
@@ -75,17 +75,18 @@ export default function LessonModal({
 
   useEffect(() => {
     if (lesson) {
-      // formatDate 함수를 사용하여 날짜 처리
       const formattedDate = lesson.date ? formatDate(lesson.date) : formatDate(new Date());
+      const subjectValue = lesson.subject || SUBJECTS[0];
+      
       setFormData({
         studentId: lesson.studentId || '',
-        subject: lesson.subject || SUBJECTS[0],
-        customSubject: lesson.subject && !SUBJECTS.includes(lesson.subject) ? lesson.subject : '',
+        subject: subjectValue,
+        customSubject: subjectValue && !SUBJECTS.includes(subjectValue) ? subjectValue : '',
         date: formattedDate,
         time: lesson.time || '09:00',
         content: lesson.content || ''
       });
-      setIsCustomSubject(!SUBJECTS.includes(lesson.subject));
+      setIsCustomSubject(subjectValue ? !SUBJECTS.includes(subjectValue) : false);
     } else {
       setFormData({
         studentId: '',
@@ -127,10 +128,12 @@ export default function LessonModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const submitData = {
-        ...formData,
+      const submitData: LessonFormData = {
         studentId: Number(formData.studentId),
-        subject: isCustomSubject ? formData.customSubject : formData.subject
+        subject: isCustomSubject ? formData.customSubject : formData.subject,
+        date: formData.date,
+        time: formData.time,
+        content: formData.content
       };
 
       await onSubmit(submitData);

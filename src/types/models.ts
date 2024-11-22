@@ -35,9 +35,17 @@ export interface Lesson extends BaseEntity {
 }
 
 export interface LessonFormData {
+  studentId: number;
   subject: string;
-  title: string;
-  description: string;
-  price: number;
-  location: string;
+  date: string;
+  time: string;
+  content?: string;
+}
+
+export interface LessonFormData {
+  studentId: number;
+  subject: string;
+  date: string;
+  time: string;
+  content?: string;
 }

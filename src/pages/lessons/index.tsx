@@ -2,19 +2,17 @@ import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import LessonList from '@/components/lesson/LessonList';
 import LessonModal from '@/components/lesson/LessonModal';
-import { Lesson, LessonFormData } from '@/types/lesson';
-
-// 날짜 형식 변환 함수
-const formatDateForInput = (dateString: string): string => {
-  if (!dateString) return '';
-  const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
-};
+import { Lesson, LessonFormData } from '@/types/models';
 
 export default function LessonsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedLesson, setSelectedLesson] = useState<Partial<Lesson> | null>(null);
+  const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  const handleEdit = (lesson: Lesson) => {
+    setSelectedLesson(lesson);
+    setIsModalOpen(true);
+  };
 
   const handleSubmit = async (data: LessonFormData) => {
     try {
@@ -45,37 +43,32 @@ export default function LessonsPage() {
     }
   };
 
-  const handleEditClick = (lesson: Lesson) => {
-    setSelectedLesson({
-      ...lesson,
-      date: formatDateForInput(lesson.date as string)  // 타입 단언 추가
-    });
-    setIsModalOpen(true);
-  };
-
   return (
-    <div className="px-1 sm:px-2 max-w-full mx-auto">
-      {/* 헤더 영역 */}
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-pink-600">수업 관리</h1>
-        <button
-          onClick={() => {
-            setSelectedLesson(null);
-            setIsModalOpen(true);
-          }}
-          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors"
-        >
-          새 수업 등록
-        </button>
-      </div>
+    <div className="w-full max-w-[100vw] overflow-x-hidden px-0">
+      <div className="flex flex-col space-y-8">
+        {/* 헤더 영역 */}
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-2xl font-bold text-pink-600">수업 관리</h1>
+          <button
+            onClick={() => {
+              setSelectedLesson(null);
+              setIsModalOpen(true);
+            }}
+            className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors"
+          >
+            새 수업 등록
+          </button>
+        </div>
 
-      {/* 나머지 컨텐츠 */}
-      <div className="overflow-x-auto -mx-1 sm:mx-0">
-        <div className="min-w-fit">
-          <LessonList
-            refreshTrigger={refreshTrigger}
-            onEdit={handleEditClick}
-          />
+        {/* 나머지 컨텐츠 */}
+        <div className="w-full overflow-x-auto px-0">
+          <div className="min-w-full">
+            <LessonList 
+              refreshTrigger={refreshTrigger}
+              onEdit={handleEdit}
+              className="min-w-full divide-y divide-gray-200"
+            />
+          </div>
         </div>
       </div>
 

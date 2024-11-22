@@ -1,5 +1,5 @@
 import { Student } from '@/types/models';
-import { BaseListProps } from '@/types/utils';
+import { BaseListProps } from '@/types/common';
 import { fetchData, deleteData } from '@/utils/api';
 import { useEffect, useState } from 'react';
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Calendar from "@/components/calendar/Calendar";
 import LessonModal from "@/components/lesson/LessonModal";
 import { useRouter } from "next/router";
-import { LessonFormData } from '@/types/lesson';
+import { LessonFormData } from '@/types/models';
 
 export default function Dashboard() {
   const router = useRouter();
