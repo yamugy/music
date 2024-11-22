@@ -1,8 +1,4 @@
-export interface BaseEntity {
-  id: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+import { BaseEntity } from './common';
 
 export interface Student extends BaseEntity {
   name: string;
@@ -25,10 +21,23 @@ export interface Payment extends BaseEntity {
 export interface Lesson extends BaseEntity {
   studentId: number;
   subject: string;
+  title: string;
+  description: string;
+  price: number;
+  location: string;
+  instructor: string;
   date: string;
   time: string;
   content?: string;
   student: {
     name: string;
   };
+}
+
+export interface LessonFormData {
+  subject: string;
+  title: string;
+  description: string;
+  price: number;
+  location: string;
 }
