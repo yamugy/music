@@ -1,0 +1,41 @@
+/* 프린트 스타일 정의 파일 */
+@media print {
+    /* 프린트 시 숨길 요소 */
+    .no-print {
+      display: none !important;
+    }
+    
+    /* 프린트 시에만 표시할 요소 */
+    .print-only {
+      display: block !important;
+    }
+    
+    /* 페이지 설정 */
+    @page {
+      margin: 2cm;
+      size: A4;
+    }
+  
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+  
+    /* 프린트 영역 스타일 */
+    .print-container {
+      width: 210mm;
+      margin: 0 auto;
+      padding: 20mm;
+    }
+  
+    .print-content {
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+  }
+  
+  /* 화면 표시 시 프린트 전용 요소 숨김 */
+  @media screen {
+    .print-only {
+      display: none !important;
+    }
+  }

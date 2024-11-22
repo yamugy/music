@@ -1,0 +1,57 @@
+최초백업하기
+
+# 프로젝트 폴더에서
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/[사용자명]/[저장소이름].git
+git push -u origin main
+
+
+
+GitHub에서 프로젝트 불러오기
+
+새로운 환경에서 프로젝트 클론
+git clone https://github.com/[사용자명]/[저장소이름].git
+cd [저장소이름]
+
+일반적인 작업흐름
+
+# 변경사항 확인
+git status
+
+# 변경사항 스테이징
+git add .
+
+# 커밋
+git commit -m "변경사항 설명"
+
+# GitHub에 푸시
+git push origin main
+
+# GitHub의 변경사항 가져오기
+git pull origin main
+
+
+깃헙에 프로젝트를 만들고 진행할때 완전초기화작업
+
+# Git 설정 제거
+Remove-Item -Recurse -Force .git
+# Git 초기화
+git init
+
+# 파일 스테이징
+git add .
+
+# 초기 커밋 생성
+git commit -m "Initial commit"
+
+# main 브랜치로 변경
+git branch -M main
+
+# GitHub 원격 저장소 연결 (먼저 GitHub에서 새 저장소 생성 필요)
+git remote add origin https://github.com/[사용자명]/[저장소이름].git
+
+# GitHub로 푸시
+git push -u origin main

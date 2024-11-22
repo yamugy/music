@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Student {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  subject   String  // 추가: 학생의 주 수업 과목
+  note      String?  @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lessons   Lesson[]
+  payments  Payment[]
+}
+
+model Lesson {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  subject   String
+  date      DateTime
+  time      String   // 수업 시간
+  content   String?  // 수업 내용
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([date])
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  amount    Int
+  method    String   // 현금, 무통장입금, 카드
+  date      DateTime
+  memo      String?
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([studentId])
+  @@index([date])
+}

@@ -1,0 +1,12 @@
+git 모든 변경사항 한번에 올리기
+
+git add .
+git commit -m "1"
+git push origin main
+
+
+백업 확인
+git log --oneline -n 1
+
+문제가 발생한다면 되돌리기
+git reset --hard HEAD~1  # 마지막 커밋 되돌리기
