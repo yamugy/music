@@ -1,7 +1,9 @@
 import { Student } from '@/types/models';
-import { BaseListProps } from '@/types/common';
+import { BaseListProps, SortConfig } from '@/types/common';
 import { fetchData, deleteData } from '@/utils/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+
+type StudentSortKeys = keyof Omit<Student, 'id' | 'createdAt' | 'updatedAt'>;
 
 interface StudentListProps extends BaseListProps {
   onEdit: (student: Student) => void;
@@ -12,6 +14,10 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
+  const [sortConfig, setSortConfig] = useState<SortConfig<Student>>({ 
+    key: 'name', 
+    direction: 'asc' 
+  });
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -43,6 +49,23 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
     }
   };
 
+  const handleSort = (key: StudentSortKeys) => {
+    setSortConfig(prev => ({
+      key,
+      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+    }));
+  };
+
+  const sortedStudents = useMemo(() => {
+    return [...filteredStudents].sort((a, b) => {
+      const valueA = String(a[sortConfig.key]);
+      const valueB = String(b[sortConfig.key]);
+      return sortConfig.direction === 'asc'
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA);
+    });
+  }, [filteredStudents, sortConfig]);
+
   return (
     <div className={className}>
       <div className="mb-4">
@@ -58,22 +81,37 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">이름</th>
-              <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">연락처</th>
-              <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">수강과목</th>
-              <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">메모</th>
+              {[
+                { key: 'name' as const, label: '이름' },
+                { key: 'phone' as const, label: '연락처' },
+                { key: 'subject' as const, label: '수강과목' },
+                { key: 'note' as const, label: '메모' }
+              ].map(({ key, label }) => (
+                <th
+                  key={key}
+                  onClick={() => handleSort(key)}
+                  className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                >
+                  <div className="flex items-center justify-center space-x-1">
+                    <span>{label}</span>
+                    {sortConfig.key === key && (
+                      <span>{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>
+                    )}
+                  </div>
+                </th>
+              ))}
               <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">관리</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {filteredStudents.map((student) => (
+            {sortedStudents.map((student) => (
               <tr key={student.id} className="hover:bg-gray-50">
-                <td className="px-2 py-4 whitespace-nowrap text-center font-semibold text-gray-900 bg-pink-50">
+                <td className="px-2 py-4 whitespace-nowrap text-center font-bold text-gray-900 bg-pink-50">
                   {student.name}
                 </td>
-                <td className="px-2 py-4 whitespace-nowrap text-center">{student.phone || '-'}</td>
-                <td className="px-2 py-4 whitespace-nowrap text-center">{student.subject || '-'}</td>
-                <td className="px-2 py-4 text-center">{student.note || '-'}</td>
+                <td className="px-2 py-4 whitespace-nowrap text-center text-sm">{student.phone || '-'}</td>
+                <td className="px-2 py-4 whitespace-nowrap text-center text-sm">{student.subject || '-'}</td>
+                <td className="px-2 py-4 text-center text-sm">{student.note || '-'}</td>
                 <td className="px-2 py-4 text-center">
                   <div className="flex items-center justify-center gap-2">
                     <button

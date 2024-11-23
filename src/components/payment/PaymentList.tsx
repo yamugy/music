@@ -180,9 +180,9 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
                 <th
                   key={key}
                   onClick={() => handleSort(key)}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 whitespace-nowrap"
+                  className="px-6 py-3 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 whitespace-nowrap"
                 >
-                  <div className="flex items-center space-x-1">
+                  <div className="flex items-center justify-center space-x-1">
                     <span>{label}</span>
                     {sortConfig.key === key && (
                       <span>{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>
@@ -190,7 +190,7 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
                   </div>
                 </th>
               ))}
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+              <th className="px-6 py-3 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
                 관리
               </th>
             </tr>
@@ -198,22 +198,22 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
           <tbody className="bg-white divide-y divide-gray-200">
             {currentPayments.map((payment) => (
               <tr key={payment.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-base text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
                   {formatDate(payment.date)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-semibold text-gray-900 bg-pink-50">
+                <td className="px-6 py-4 whitespace-nowrap text-center text-base font-semibold text-gray-900 bg-pink-50">
                   {payment.student.name}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
                   {payment.amount.toLocaleString()}원
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
                   {payment.method}
                 </td>
-                <td className="px-6 py-4 text-base text-gray-700 break-words min-w-[120px] max-w-[200px]">
+                <td className="px-6 py-4 text-center text-sm text-gray-700 break-words min-w-[120px] max-w-[200px]">
                   {payment.memo || '-'}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4 text-center whitespace-nowrap">
                   <div className="flex items-center justify-center gap-2">
                     <button
                       onClick={() => onEdit(payment)}

@@ -143,22 +143,22 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   학생명
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   과목
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   날짜
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   시간
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   수업내용
                 </th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   관리
                 </th>
               </tr>
@@ -178,7 +178,7 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
                         isNewStudent ? 'border-t-2 border-pink-100' : ''
                       }`}
                     >
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-center text-sm text-gray-900">
                         {isNewStudent ? (
                           <div className="font-bold text-base text-gray-900 bg-pink-50 -mx-4 px-4 py-2">
                             {lesson.student.name}
@@ -189,19 +189,19 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
                           </div>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-center text-sm text-gray-900">
                         {lesson.subject}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-center text-sm text-gray-900">
                         {formatDate(lesson.date)}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">
+                      <td className="px-4 py-3 text-center text-sm text-gray-900">
                         {lesson.time}
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-500 max-w-xs truncate">
+                      <td className="px-4 py-3 text-center text-sm text-gray-500 max-w-xs truncate">
                         {lesson.content || '-'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-6 py-4 text-center whitespace-nowrap">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => onEdit(lesson)}
@@ -230,22 +230,22 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   학생명
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   과목
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   날짜
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   시간
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   수업내용
                 </th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-4 py-3 text-center text-sm font-bold text-gray-900 uppercase tracking-wider">
                   관리
                 </th>
               </tr>
@@ -253,22 +253,22 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
             <tbody className="bg-white divide-y divide-gray-200">
               {sortedLessons.map((lesson) => (
                 <tr key={lesson.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-sm font-semibold text-gray-900 bg-pink-50">
+                  <td className="px-4 py-3 text-center text-sm font-semibold text-gray-900 bg-pink-50">
                     {lesson.student.name}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-900">
+                  <td className="px-4 py-3 text-center text-sm text-gray-900">
                     {lesson.subject}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-900">
+                  <td className="px-4 py-3 text-center text-sm text-gray-900">
                     {formatDate(lesson.date)}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-900">
+                  <td className="px-4 py-3 text-center text-sm text-gray-900">
                     {lesson.time}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-500 max-w-xs truncate">
+                  <td className="px-4 py-3 text-center text-sm text-gray-500 max-w-xs truncate">
                     {lesson.content || '-'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4 text-center whitespace-nowrap">
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => onEdit(lesson)}
