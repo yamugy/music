@@ -4,29 +4,26 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
-  directUrl = env("DATABASE_URL")
-  shadowDatabaseUrl = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("DATABASE_URL")
 }
 
 model Student {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
-  phone     String
-  subject   String  // 추가: 학생의 주 수업 과목
-  note      String?  @default("")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  lessons   Lesson[]
+  phone     String?
+  subject   String?
+  note      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   payments  Payment[]
+  lessons   Lesson[]
 }
 
 model Lesson {
@@ -49,12 +46,9 @@ model Payment {
   studentId Int
   amount    Int
   method    String   // 현금, 무통장입금, 카드
-  date      DateTime
+  date      DateTime @default(now())
   memo      String?
-  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student   Student  @relation(fields: [studentId], references: [id])
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-
-  @@index([studentId])
-  @@index([date])
+  updatedAt DateTime @updatedAt
 }

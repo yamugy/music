@@ -1,18 +1,14 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async headers() {
+  async rewrites() {
     return [
       {
         source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,PUT,DELETE' },
-        ],
-      },
+        destination: '/api/:path*'
+      }
     ];
-  },
-}
+  }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
