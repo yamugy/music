@@ -5,19 +5,16 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "type-check": "tsc --noEmit",
-    "check-deploy": "npm run type-check && ts-node -P tsconfig.json scripts/deployment-checks/index.ts",
-    "deploy": "npm run check-deploy && vercel",
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.7.0",
     "date-fns": "^2.30.0",
-    "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "14.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   },
@@ -26,7 +23,10 @@
     "@types/react": "^18.2.21",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.29",
-    "prisma": "^5.2.0",
+    "prisma": "^5.7.0",
     "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
