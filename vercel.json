@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 {
   "version": 2,
   "buildCommand": "prisma generate && next build",
   "installCommand": "npm install",
   "framework": "nextjs"
+=======
+{
+  "version": 2,
+  "buildCommand": "prisma generate && next build",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+>>>>>>> 6f898089e01d41f9fb982fd9d24fe22a2e4afbce
 }
