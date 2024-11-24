@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "type-check": "tsc --noEmit",
     "check-deploy": "npm run type-check && ts-node -P tsconfig.json scripts/deployment-checks/index.ts",
-    "deploy": "npm run check-deploy && vercel"
+    "deploy": "npm run check-deploy && vercel",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.2.0",
