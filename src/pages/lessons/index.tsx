@@ -48,16 +48,15 @@ export default function LessonsPage() {
       <div className="flex flex-col space-y-8">
         {/* 헤더 영역 */}
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold text-pink-600">수업 관리</h1>
-          <button
-            onClick={() => {
-              setSelectedLesson(null);
-              setIsModalOpen(true);
-            }}
-            className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors"
-          >
-            새 수업 등록
-          </button>
+          <h1 className="text-2xl font-bold text-primary mb-6">수업 관리</h1>
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent transition-colors"
+            >
+              새 수업 등록
+            </button>
+          </div>
         </div>
 
         {/* 나머지 컨텐츠 */}

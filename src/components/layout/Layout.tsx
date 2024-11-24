@@ -20,8 +20,8 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-pink-500 p-4">
+    <div className="min-h-screen bg-gray-50">
+      <nav className="bg-primary p-4">
         <div className="flex space-x-4">
           {NAVIGATION_ITEMS.map((item) => (
             <button
@@ -29,10 +29,10 @@ export default function Layout({ children }: LayoutProps) {
               onClick={() => handleNavigation(item.path)}
               className={`px-4 py-2 rounded-lg transition-colors
                 ${item.path === '/logout' 
-                  ? 'bg-lime-500 text-white hover:bg-lime-600' 
+                  ? 'bg-red-500 text-white hover:bg-red-600' 
                   : router.pathname === item.path 
-                    ? 'bg-pink-700 text-white' 
-                    : 'text-white hover:bg-pink-600'
+                    ? 'bg-accent text-white' 
+                    : 'text-white hover:bg-secondary'
                 }`}
             >
               {item.label}

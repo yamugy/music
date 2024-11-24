@@ -160,7 +160,7 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
           </div>
           {studentTotals !== null && (
             <div className="text-base font-medium text-gray-700">
-              총 결제액: <span className="text-primary">{studentTotals.toLocaleString()}원</span>
+              총 결제액: <span className="text-primary font-bold">{studentTotals.toLocaleString()}원</span>
             </div>
           )}
         </div>
@@ -180,7 +180,7 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
                 <th
                   key={key}
                   onClick={() => handleSort(key)}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 whitespace-nowrap"
+                  className="px-6 py-3 text-left text-sm font-semibold text-primary uppercase tracking-wider cursor-pointer hover:bg-gray-100 whitespace-nowrap"
                 >
                   <div className="flex items-center space-x-1">
                     <span>{label}</span>
@@ -201,7 +201,7 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
                 <td className="px-6 py-4 whitespace-nowrap text-base text-gray-900">
                   {formatDate(payment.date)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-semibold text-gray-900 bg-pink-50">
+                <td className="px-6 py-4 whitespace-nowrap text-base font-semibold text-gray-900 bg-primary/10">
                   {payment.student.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-base text-gray-900">
@@ -223,7 +223,7 @@ export default function PaymentList({ refreshTrigger, onEdit, onPaymentsLoad }: 
                     </button>
                     <button
                       onClick={() => handleDelete(payment.id)}
-                      className="px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded hover:bg-pink-200"
+                      className="px-2 py-1 text-xs bg-primary/10 text-primary rounded hover:bg-primary/20"
                     >
                       삭제
                     </button>

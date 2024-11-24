@@ -175,12 +175,12 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
                     <tr 
                       key={lesson.id} 
                       className={`hover:bg-gray-50 ${
-                        isNewStudent ? 'border-t-2 border-pink-100' : ''
+                        isNewStudent ? 'border-t-2 border-primary/20' : ''
                       }`}
                     >
                       <td className="px-4 py-3 text-sm text-gray-900">
                         {isNewStudent ? (
-                          <div className="font-bold text-base text-gray-900 bg-pink-50 -mx-4 px-4 py-2">
+                          <div className="font-bold text-base text-primary bg-primary/10 -mx-4 px-4 py-2">
                             {lesson.student.name}
                           </div>
                         ) : (
@@ -211,7 +211,7 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
                           </button>
                           <button
                             onClick={() => handleDelete(lesson.id)}
-                            className="px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded hover:bg-pink-200"
+                            className="px-2 py-1 text-xs bg-primary/10 text-primary rounded hover:bg-primary/20"
                           >
                             삭제
                           </button>
@@ -253,7 +253,7 @@ const LessonList: React.FC<LessonListProps> = ({ refreshTrigger, onEdit, classNa
             <tbody className="bg-white divide-y divide-gray-200">
               {sortedLessons.map((lesson) => (
                 <tr key={lesson.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-sm font-semibold text-gray-900 bg-pink-50">
+                  <td className="px-4 py-3 text-sm font-semibold text-gray-900 bg-primary/10">
                     {lesson.student.name}
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-900">

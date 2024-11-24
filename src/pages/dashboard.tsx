@@ -84,7 +84,7 @@ export default function Dashboard() {
 
   return (
     <div className="px-1 sm:px-2 max-w-full mx-auto">
-      <h1 className="text-2xl font-bold text-pink-600 mb-8">대시보드</h1>  {/* mb-4에서 mb-8로 변경 */}
+      <h1 className="text-2xl font-bold text-primary mb-8">대시보드</h1>  {/* mb-4에서 mb-8로 변경 */}
       
       <div className="overflow-x-auto -mx-1 sm:mx-0">
         <div className="min-w-fit">

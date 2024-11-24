@@ -1,4 +1,3 @@
-
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,8 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FF69B4',
-        secondary: '#FFB6C1',
+        primary: '#4A90E2',      // 메인 파란색
+        secondary: '#5DA0E6',    // 밝은 파란색
+        accent: '#2171CD',       // 진한 파란색
       },
     },
   },

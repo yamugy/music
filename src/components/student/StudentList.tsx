@@ -58,7 +58,7 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">이름</th>
+              <th className="px-2 py-3 text-center text-sm font-bold text-primary uppercase">이름</th>
               <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">연락처</th>
               <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">수강과목</th>
               <th className="px-2 py-3 text-center text-sm font-bold text-gray-900 uppercase">메모</th>
@@ -68,7 +68,7 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredStudents.map((student) => (
               <tr key={student.id} className="hover:bg-gray-50">
-                <td className="px-2 py-4 whitespace-nowrap text-center font-semibold text-gray-900 bg-pink-50">
+                <td className="px-2 py-4 whitespace-nowrap text-center font-semibold text-gray-900 bg-primary/10">
                   {student.name}
                 </td>
                 <td className="px-2 py-4 whitespace-nowrap text-center">{student.phone || '-'}</td>
@@ -84,7 +84,7 @@ export default function StudentList({ onEdit, refreshTrigger, className }: Stude
                     </button>
                     <button
                       onClick={() => handleDelete(student.id)}
-                      className="px-2 py-1 text-xs bg-pink-100 text-pink-600 rounded hover:bg-pink-200"
+                      className="px-2 py-1 text-xs bg-primary/10 text-primary rounded hover:bg-primary/20"
                     >
                       삭제
                     </button>
